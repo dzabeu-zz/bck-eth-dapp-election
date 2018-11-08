@@ -18,3 +18,5 @@ Após isso, basta iniciar a aplicação através do comando (na raiz do projeto)
 a. truffle migrate --reset
 
 b. npm run dev
+
+![alt text](img_exemplos/tela-votacao.png)
