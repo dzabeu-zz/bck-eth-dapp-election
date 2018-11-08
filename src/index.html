@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Election | powered by BeyondLabsEY</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen+Mono">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="application wrapper">
+        <h1 class="sr-only">Election</h1>
+        <div class="wrapper-content">
+            <div class="content-clean">
+                <div class="page-title">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-auto"><img src="img/icon-geek.png" alt="Geek icon" width="30" height="30" class="mx-2"></div>
+                            <div class="col-auto align-self-end">
+                                <h2 class="text-white h5 m-0">Who is your favorite geek?</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner">
+                    <div class="container">
+                        <div class="row justify-content-between">
+                            <div class="col-sm-3">
+                                <div class="vote-option" data-vote="100">
+                                    <p class="text-center">Vote 100 for</p>
+                                    <figure class="figure d-block mx-auto"><img class="rounded-circle img-fluid figure-img d-block mx-auto" src="img/bill-gates-picture1x1.jpg" alt="Bill Gates picture" width="200" height="200">
+                                        <figcaption class="figure-caption text-center">Bill Gates</figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="vote-option" data-vote="200">
+                                    <p class="text-center">Vote 200 for</p>
+                                    <figure class="figure d-block mx-auto"><img class="rounded-circle img-fluid figure-img d-block mx-auto" src="img/elon-musk-picture1x1.jpg" alt="Elon Musk picture" width="200" height="200">
+                                        <figcaption class="figure-caption text-center">Elon Musk</figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="vote-option" data-vote="300">
+                                    <p class="text-center">Vote 300 for</p>
+                                    <figure class="figure d-block mx-auto"><img class="rounded-circle img-fluid figure-img d-block mx-auto" src="img/mark-zuckerberg-picture1x1.jpg" alt="Mark Zuckerberg picture" width="200" height="200">
+                                        <figcaption class="figure-caption text-center">Mark Zuckerberg</figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="vote-option" data-vote="400">
+                                    <p class="text-center">Vote 400 for</p>
+                                    <figure class="figure d-block mx-auto"><img class="rounded-circle img-fluid figure-img d-block mx-auto" src="img/steve-jobs-picture1x1.jpg" alt="Steve Jobs picture" width="200" height="200">
+                                        <figcaption class="figure-caption text-center">Steve Jobs</figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <form id="voteForm" novalidate="novalidate" onSubmit="App.castVote(); return false;">
+                        <div class="form-row">
+                            <div class="col d-flex justify-content-center"><input class="form-control form-control-lg vote-field" type="text" name="vote" readonly="" required="" maxlength="3" minlength="3" autocomplete="off" inputmode="numeric" id="inputVote" title="Enter your vote"></div>
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="col-auto p-0"><button class="btn btn-light btn-lg number-key" type="button" id="btnNumber1" title="Push for number one" data-key="1">1</button></div>
+                            <div class="col-auto p-0"><button class="btn btn-light btn-lg number-key" type="button" id="btnNumber2" title="Push for number two" data-key="2">2</button></div>
+                            <div class="col-auto p-0"><button class="btn btn-light btn-lg number-key" type="button" id="btnNumber3" title="Push for number three" data-key="3">3</button></div>
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="col-auto p-0"><button class="btn btn-light btn-lg number-key" type="button" id="btnNumber4" title="Push for number four" data-key="4">4</button></div>
+                            <div class="col-auto p-0"><button class="btn btn-light btn-lg number-key" type="button" id="btnNumber5" title="Push for number five" data-key="5">5</button></div>
+                            <div class="col-auto p-0"><button class="btn btn-light btn-lg number-key" type="button" id="btnNumber6" title="Push for number six" data-key="6">6</button></div>
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="col-auto p-0"><button class="btn btn-light btn-lg number-key" type="button" id="btnNumber7" title="Push for number seven" data-key="7">7</button></div>
+                            <div class="col-auto p-0"><button class="btn btn-light btn-lg number-key" type="button" id="btnNumber8" title="Push for number eight" data-key="8">8</button></div>
+                            <div class="col-auto p-0"><button class="btn btn-light btn-lg number-key" type="button" id="btnNumber9" title="Push for number nine" data-key="9">9</button></div>
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="col-auto p-0"><button class="btn btn-danger btn-lg d-flex justify-content-center number-key" type="button" id="btnNumberClear" title="Push to clear vote" aria-label="Clear" data-key="Clear"><img class="img-fluid" src="img/baseline_clear_white_24dp.png" alt="Clear icon" width="32" height="32"></button></div>
+                            <div
+                                class="col-auto p-0"><button class="btn btn-light btn-lg number-key" type="button" id="btnNumberZero" title="Push for zero" data-key="0">0</button></div>
+                        <div class="col-auto p-0"><button class="btn btn-success btn-lg number-key" type="submit" id="btnNumberVote" value="vote" title="Push to confirm vote" aria-label="Vote" data-key="Vote"><img class="img-fluid" src="img/baseline_how_to_vote_white_24dp.png" alt="Vote icon" width="32" height="32"></button></div>
+                </div>
+               </form>
+            </div>
+        </div>
+        <div class="content-background"></div>
+    </div>
+    <div class="wrapper-footer">
+        <div class="main-footer">
+            <footer>
+                <div class="container">
+                    <p class="text-center">powered by BeyondLabsEY</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+    </div> 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/vote.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
