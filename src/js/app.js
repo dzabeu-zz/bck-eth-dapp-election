@@ -28,10 +28,8 @@ App = {
       App.contracts.Election = TruffleContract(election);
       // Connect provider to interact with contract
       App.contracts.Election.setProvider(App.web3Provider);
-
       App.listenForEvents();
-
-      return App.render();
+      return App.initAccount();
     });
   },
 
@@ -52,7 +50,7 @@ App = {
     });
   },
 
-  render: function() {
+  initAccount: function() {
     var electionInstance;
     var loader = $("#loader");
     var content = $("#content");
@@ -68,61 +66,21 @@ App = {
       }
     });
 
-    // Load contract data
-    App.contracts.Election.deployed().then(function(instance) {
-      electionInstance = instance;
-      return electionInstance.candidatesCount();
-    }).then(function(candidatesCount) {
-      var candidatesResults = $("#candidatesResults");
-      candidatesResults.empty();
-
-      var candidatesSelect = $('#candidatesSelect');
-      candidatesSelect.empty();
-
-      for (var i = 100; i <= candidatesCount; i=i+100) {
-        
-        electionInstance.candidates(i).then(function(candidate) {
-          var id = candidate[0];
-          var name = candidate[1];
-          var voteCount = candidate[2];
-
-          // Render candidate Result
-          var candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + voteCount + "</td></tr>"
-          candidatesResults.append(candidateTemplate);
-
-          // Render candidate ballot option
-          var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
-          candidatesSelect.append(candidateOption);
-        });
-      }
-      return electionInstance.voters(App.account);
-    }).then(function(hasVoted) {
-      // Do not allow a user to vote
-      if(hasVoted) {
-       // $('form').hide();
-      }
-      loader.hide();
-      content.show();
-    }).catch(function(error) {
-      console.warn(error);
-    });
   },
 
   castVote: function() {
     var candidateId = $('#inputVote').val();
-
     if ( candidateId!= 100 && candidateId!= 200 && candidateId!= 300 && candidateId!= 400 ){
       alert("Insert a valid vote");
       return;
     }
-
     App.contracts.Election.deployed().then(function(instance) {
-      console.log(candidateId);
       return instance.vote(candidateId, { from: App.account });
     }).then(function(result) {
-      // Wait for votes to update
-      $("#content").hide();
-      $("#loader").show();
+      $(".vote-option").removeClass("unselected");
+      $("#voteForm").each(function() {
+        this.reset();
+      });
     }).catch(function(err) {
       console.error(err);
     });
